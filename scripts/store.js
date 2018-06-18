@@ -10,7 +10,7 @@ const store = (function () {
   const hideCheckedItems = false;
   const searchTerm = '';
   const findById = function(id) {
-    items.find(item => item.id === id);
+    return items.find(item => item.id === id);
   };
   const addItem = function (name) {
     try {
@@ -22,8 +22,9 @@ const store = (function () {
     }
   };
   const findAndToggleChecked = function(id) {
-    this.findById(id).checked = !items.checked;
+    findById(id).checked = !findById(id).checked;
   };
+  
   const findAndUpdateName = function(id, newName) {
     try {
       Item.validateName(newName);
