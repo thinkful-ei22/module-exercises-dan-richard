@@ -10,12 +10,12 @@ const store = (function () {
   const hideCheckedItems = false;
   const searchTerm = '';
   const findById = function(id) {
-    return items.find(id => items.id === id);
+    this.items.find(item => item.id === id);
   };
   const addItem = function (name) {
     try {
       Item.validateName(name);
-      items.push(Item.create(name));
+      this.items.push(Item.create(name));
     }
     catch(error) {
       console.error(`Cannot add item: ${error.message}`);
@@ -34,7 +34,8 @@ const store = (function () {
     }
   };
   const findAndDelete = function(id) {
-    this.items.filter(item => findById(id) !== item.id);
+    let filteredArray = this.items.filter(item => findById(id) !== item.id);
+    this.items = filteredArray;
   };
 
   return {items, hideCheckedItems, searchTerm, addItem, findAndToggleChecked, findAndUpdateName, findAndDelete, findById};
