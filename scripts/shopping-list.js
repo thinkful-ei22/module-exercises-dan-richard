@@ -1,6 +1,6 @@
 'use strict';
 
-/* global store, cuid */
+/* global store, cuid,$ Item*/
 
 // eslint-disable-next-line no-unused-vars
 const shoppingList = (function(){
