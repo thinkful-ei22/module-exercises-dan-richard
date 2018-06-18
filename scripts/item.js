@@ -1,4 +1,5 @@
 'use strict';
+/* global store, cuid */
 
 const Item = (function () {
   function validateName(name) {
