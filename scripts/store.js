@@ -1,7 +1,7 @@
 'use strict';
 /* global store cuid, Item*/
 const store = (function () {
-  const items = [
+  let items = [
     { id: cuid(), name: 'apples', checked: false },
     { id: cuid(), name: 'oranges', checked: false },
     { id: cuid(), name: 'milk', checked: true },
@@ -10,7 +10,7 @@ const store = (function () {
   const hideCheckedItems = false;
   const searchTerm = '';
   const findById = function(id) {
-    this.items.find(item => item.id === id);
+    items.find(item => item.id === id);
   };
   const addItem = function (name) {
     try {
@@ -34,8 +34,11 @@ const store = (function () {
     }
   };
   const findAndDelete = function(id) {
-    let filteredArray = this.items.filter(item => findById(id) !== item.id);
-    this.items = filteredArray;
+    let itemIndex = this.items.findIndex(item => item.id === id);
+    this.items.splice(itemIndex,1);
+
+    // let filteredArray = items.filter(item => findById(id) !== item.id);
+    // this.items = filteredArray;
   };
 
   return {items, hideCheckedItems, searchTerm, addItem, findAndToggleChecked, findAndUpdateName, findAndDelete, findById};
