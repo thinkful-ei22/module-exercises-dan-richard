@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 const store = (function () {
   const items = [
     { id: cuid(), name: 'apples', checked: false },
